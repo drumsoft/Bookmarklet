@@ -1,0 +1,19 @@
+ブックマークレット
+
+#iPhoneで[拡大可能にする]
+
+javascript:var i,v=document.getElementsByName("viewport");for(i=0;i<v.length;i++)v[i].setAttribute("content","user-scalable=yes,maximum-scale=10");void(0);
+
+
+# Twitterで一気にフェッチ
+TL・アカウント別ツイート・フォロワー一覧等をいっぺんにフェッチ
+
+javascript:var s,f,n=window.prompt("How many pages?(infinite when -1)","-1");twttr.app.currentPage().send("getStreamManager",function(m){s=m.getCurrent()});f=function(){if(s.noMoreOldItems||n==0){alert("done")}else{if(!s._loadingMoreLock){s.getMoreOldItems();n--}setTimeout(f,200)}};void(f());
+
+
+# togetterで残りを一気にフェッチ
+
+javascript:var f;f=function(){var b=$("a:contains(残りを読む)");if(b.length>0){b.click();setTimeout(f,5000)}};void(f());
+
+
+

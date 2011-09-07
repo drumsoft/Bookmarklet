@@ -1,0 +1,8 @@
+ブックマークレット
+
+#iPhoneで[拡大可能にする]
+javascript:var i,v=document.getElementsByName("viewport");for(i=0;i<v.length;i++)v[i].setAttribute("content","user-scalable=yes,maximum-scale=10");void(0);
+
+検証用
+javascript:var i,v=document.getElementsByName("viewport");for(i=0;i<v.length;i++)alert(v[i].getAttribute("content"));void(0);
+
