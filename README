@@ -1,6 +1,86 @@
 ブックマークレット
 
-#iPhoneで[拡大可能にする]
+Firefoxで普段使ってるブックマークレットです。ブラウザからガッとコピペしてきて、そのまま検証してないので、動かないのがあったら教えてください。
+
+
+# オートコンプリート・コピー・カット・ペースト等を禁止している、フォームの不便な制限を殺す
+
+javascript:(function(){var a=["autocomplete","oncopy","oncut","onpaste"],b,f,i,j,c={},s="";function k(t){f=document.getElementsByTagName(t);for(i=0;i<f.length;i++){for(j=0;j<a.length;j++){b=a[j];if(f[i].hasAttribute(b)){f[i].removeAttribute(b);b in c?c[b]++:c[b]=1}}}}k("form");k("input");for(b in c){s+=b+":"+c[b]+" "}alert((s?s:"nothing ")+"killed");return void(0);})();
+
+
+# WayBackMachine で過去の状態を見る
+
+javascript:location.href='http://web.archive.org/web/'+document.location.href;
+
+
+# （ime.nuやpinktowerの）リダイレクタ・クッションURLを削除する
+
+javascript:var%20a=document.getElementsByTagName(%22a%22);for(var%20i=0;i<a.length;i++)a[i].href=a[i].href.replace(/http:\/\/(ime.(nu|st)|pinktower.com)\//i,%22http://%22);void(0);
+
+
+# テキストで書かれたURLをリンクに変換
+
+javascript:var%20b=document.getElementsByTagName(%22body%22)[0];b.innerHTML=b.innerHTML.replace(/\b(ttp:\/\/[^\s]+)/g,%22<a%20href=%5c%22h$1%5c%22>h$1</a>%22);void(0);
+
+
+# 画像へのリンクをインライン画像に変換
+
+javascript:var%20a=document.getElementsByTagName(%22a%22);for(var%20i=0,l=a.length;i<l;i++)if(/[pjg][npi]e?[gf]$/.test(a[i])){var%20e=document.createElement(%22img%22);e.src=a[i].href;a[i].appendChild(e);}void(0);
+
+
+# ページから外部リンクを削除
+
+javascript:a=document.getElementsByTagName(%22a%22);for(var%20i=0;i<a.length;i++){if(a[i].href.indexOf(location.host)<0){a[i].innerHTML=%22%22}};void(0);
+
+
+# チェックボックスを全部反転させる
+
+javascript:function%20fw(w){if(w.length)for(var%20i=0;i<w.length;i++)fw(w[i]);else%20fd(w.document)}function%20fd(d){var%20f=d.forms;for(var%20i=0;i<f.length;i++){var%20e=f[i].elements;for(j=0;j<e.length;j++)if(e[j].type=='checkbox')void(e[j].checked=!e[j].checked);}}fw(window);
+
+
+# ページ内の Unix Timestamp ぽい文字列を日付時間形式にする
+
+javascript:var%20b=document.getElementsByTagName(%22body%22)[0];void(b.innerHTML=b.innerHTML.replace(/\d{10}/g,function(t){d=new%20Date();d.setTime(t*1000);return%20d.toString()}));
+
+
+# Hn の見出しタグからページ内の目次を作る
+
+javascript:var%20id='h2menu';var%20hd=document.getElementsByTagName(%22*%22);var%20cl=0;var%20cs=document.createElement('div');var%20bd=document.getElementsByTagName(%22body%22)[0];bd.appendChild(cs);cs.setAttribute('style','border:1px%20blue%20solid;position:fixed;top:0px;right:0px;width:24%;height:500px;overflow:auto;font-size:small;padding:0px');bd.setAttribute('style','width:74%;left:0px;');for(var%20i=0;i<hd.length;i++){if%20(hd[i].tagName.match(/^h(\d)$/i)){var%20nl=RegExp.$1;al(hd[i].innerHTML.replace(/<[^>]*>/g,''),nl,i);var%20na=document.createElement('a');na.setAttribute('name',id+i);hd[i].appendChild(na)}}void(1);function%20al(tx,lv,nm){while(cl<lv){var%20nn=document.createElement('ul');nn.setAttribute('style','margin:0px;padding:0px%200px%200px%2010px;');cs.appendChild(nn);cs=nn;cl++}while(cl>lv){cs=cs.parentNode;cl--}var%20nn=document.createElement('li');nn.setAttribute('style','margin:0px;padding:0px;');var%20na=document.createElement('a');na.setAttribute('href','#'+id+nm);na.innerHTML=tx;nn.appendChild(na);cs.appendChild(nn);}
+
+
+# はてブのコメントページを表示する
+（公式のブックマークレットがオーバーレイとか表示してきてクソださいので）
+
+javascript:location.href='http://b.hatena.ne.jp/entry/'+location.href;
+
+
+# ページ内の不要な DIV を隠すボタンをつける
+
+javascript:(function(){var%20i,d=document.getElementsByTagName(%22div%22);for(i=0;i<d.length;i++){var%20sp=document.createElement(%22span%22);sp.innerHTML=%22<a%20onclick=\%22this.parentNode.parentNode.style.display="none";return%20false;\%22>[X]</a>%22;d[i].insertBefore(sp,d[i].firstChild);if(!d[i].style.borderWidth)d[i].style.borderWidth=1;if(!d[i].style.borderStyle||d[i].style.borderStyle==%22none%22)d[i].style.borderStyle=%22solid%22;if(!d[i].style.borderColor)d[i].style.borderStyle=%22gray%22;}return%20void(0);})();
+
+
+# テーブルの不要な行を隠すボタンをつける
+
+javascript:(function(){var%20i,ts=document.getElementsByTagName("tr");for(i=0;i<ts.length;i++){var%20nt=document.createElement("td");nt.innerHTML="<a%20onclick=\"this.parentNode.parentNode.style.display=&quot;none&quot;;return%20false;\">X</a>";ts[i].insertBefore(nt,ts[i].firstChild);}return%20void(0);})();
+
+
+# フォームの状態をJavascriptコードに保存する
+
+javascript:(function(){var%20q=%22%22,f=document.forms;for(var%20i=0;i<f.length;i++){q+=%22with(document.forms[%22+(f[i].name?%22\%22%22+quote(f[i].name)+%22\%22%22:i)+%22]){%22;var%20e=f[i].elements;var%20n=elms2names(e);for(var%20j%20in%20n){if(e[j].length>1&&!String(e[j].type).match(/^select/)){for(var%20k=0;k<e[j].length;k++){q+=elm2code(e[j][k],%22[%22+k+%22]%22);}}else{q+=elm2code(e[j],%22%22);}}q+=%22}%22;}prompt(%22%E3%81%93%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E3%82%B3%E3%83%94%E3%83%BC%E3%81%97%E3%81%A6%E4%BF%9D%E5%AD%98%E3%81%97%E3%81%A6%E4%B8%8B%E3%81%95%E3%81%84%E3%80%82Location%E3%83%90%E3%83%BC%E3%81%AB%E5%85%A5%E5%8A%9B%E3%81%99%E3%82%8B%E3%81%A8%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0%E5%86%85%E5%AE%B9%E3%82%92%E5%BE%A9%E5%B8%B0%E3%81%A7%E3%81%8D%E3%81%BE%E3%81%99%22,%22javascript:/*%22+document.title+%22(%22+(new%20Date())+%22)*/%22+q+%22void(0);%22);function%20elms2names(es){var%20n=new%20Object();for(var%20j=0;j<es.length;j++){if(es[j].name)n[es[j].name]=1;}return%20n;}function%20elm2code(e,sub){if(e.name&&!e.disabled){var%20pfx=%22elements[\%22%22+quote(e.name)+%22\%22]%22+sub;if(e.type==%22text%22||e.type==%22textarea%22){return%20pfx+%22.value=\%22%22+quote(e.value)+%22\%22;%22;}else%20if(e.type==%22checkbox%22||e.type==%22radio%22){return%20pfx+%22.checked=%22+e.checked+%22;%22;}else%20if(String(e.type).match(/^select/)){var%20q=%22%22,o=e.options;for(var%20k=0;k<o.length;k++){q+=%22options[%22+k+%22].selected=%22+o[k].selected+%22;%22;}return%22with(%22+pfx+%22){%22+q+%22}%22;}}return%22%22;}function%20quote(str){return%20str.replace(/\\/g,%22\\\\%22).replace(/\%22/g,%22\\\%22%22).replace(/\r/g,%22\\r%22).replace(/\n/g,%22\\n%22);}})();
+
+
+# テーブルをタブ区切りテキストに変換する
+
+javascript:(%20function(){%20function%20ftr(tr){%20var%20r="",i,td=tr.childNodes;%20for(i=0;i<td.length;i++)%20if(td[i].tagName%20&&%20td[i].tagName.match(/th|td/i))%20r+="\""+td[i].innerHTML.replace(/\s+/g,"%20").replace(/<br\s.*?>/ig,"\n").replace(/<.*?>/g,"").replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&quot;/ig,"\"").replace(/&amp;/ig,"&").replace(/\"/g,"\"\"")+"\"\t";%20return%20r.substr(0,r.length-1);%20}%20function%20ftb(tb){%20var%20r="",i,tr=tb.childNodes;%20for(i=0;i<tr.length;i++){%20if(tr[i].tagName){%20if(tr[i].tagName.match(/thead|tfoot|tbody/i)){%20r+=ftb(tr[i]);%20}else%20if(tr[i].tagName.match(/tr/i)){%20r+=ftr(tr[i])+"\n";%20}%20}%20}%20return%20r;%20}%20function%20fd(d){%20var%20i,tb=d.getElementsByTagName("table");%20for(i=0;i<tb.length;i++){%20var%20nt=document.createElement("textarea");%20nt.innerHTML=ftb(tb[i]);%20tb[i].parentNode.insertBefore(nt,tb[i]);%20}%20}%20function%20fw(w){%20if(w.length)%20for(var%20i=0;i<w.length;i++)%20fw(w[i]);%20else%20fd(w.document)%20}%20fw(window);%20return%20void(0);%20}%20)();
+
+
+# ページに margin-top を付加する
+（画面全体がFlashなページで右クリックできる様になる）
+
+javascript:document.getElementsByTagName('body')[0].setAttribute('style','margin-top:20px');void(0);
+
+
+# iPhoneで[拡大可能にする]
 
 javascript:var i,v=document.getElementsByName("viewport");for(i=0;i<v.length;i++)v[i].setAttribute("content","user-scalable=yes,maximum-scale=10");void(0);
 
