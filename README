@@ -7,6 +7,11 @@ Firefoxで普段使ってるブックマークレットです。ブラウザか�
 ブックマークレットの使い方: 対象のWebページに移動して、ブックマークメニューやブックマークバーから、登録したブックマークレットを選択します。
 
 
+# タイトル,URL,選択部分をコピー用テキスト/リンクにする
+
+javascript:a='size="40" style="font-size:large;" onclick="this.select();"';d=document;s=getSelection()+'';if(s!="")s='"'+s+'" ';t=d.title;u=location.href;b=d.getElementsByTagName("body")[0];f=d.createElement("form");f.innerHTML='<input name="i1" '+a+'><br><input name="i2" '+a+'>';f.setAttribute("style","position:fixed;top:0px;left:0px;z-index:10000;");b.appendChild(f,b.firstChild);f.i1.value=s+t+' '+u;f.i2.value=s+'<a href="'+u+'">'+t+'</a>';void(0);
+
+
 # 転職会議 - 画像をオリジナルサイズにする
 
 javascript:jQuery("img").each(function(){var e=jQuery(this);e.attr("src",e.attr("src").replace(/\/\d+x\d+$/,""))});void(0);
