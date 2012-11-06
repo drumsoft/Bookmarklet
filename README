@@ -49,7 +49,7 @@ javascript:a=document.getElementsByTagName(%22a%22);for(var%20i=0;i<a.length;i++
 
 # チェックボックスを全部反転させる
 
-javascript:function%20fw(w){if(w.length)for(var%20i=0;i<w.length;i++)fw(w[i]);else%20fd(w.document)}function%20fd(d){var%20f=d.forms;for(var%20i=0;i<f.length;i++){var%20e=f[i].elements;for(j=0;j<e.length;j++)if(e[j].type=='checkbox')void(e[j].checked=!e[j].checked);}}fw(window);
+javascript:function fw(w){try{fd(w.document)}catch(e){}if(w.length)for(var i=0;i<w.length;i++)fw(w[i])}function fd(d){var f=d.forms;for(var i=0;i<f.length;i++){var e=f[i].elements;for(j=0;j<e.length;j++)if(e[j].type=='checkbox')void(e[j].checked=!e[j].checked);}}fw(window);
 
 
 # ページ内の Unix Timestamp ぽい文字列を日付時間形式にする
@@ -85,7 +85,7 @@ javascript:(function(){var%20q=%22%22,f=document.forms;for(var%20i=0;i<f.length;
 
 # テーブルをタブ区切りテキストに変換する
 
-javascript:(function(){function ftr(tr){var r="",i,td=tr.childNodes; for(i=0;i<td.length;i++) if(td[i].tagName && td[i].tagName.match(/th|td/i)) r+="\""+td[i].innerHTML.replace(/\s+/g," ").replace(/<br\s.*?>/ig,"\n").replace(/<.*?>/g,"").replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&quot;/ig,"\"").replace(/&amp;/ig,"&").replace(/\"/g,"\"\"")+"\"\t"; return r.substr(0,r.length-1); } function ftb(tb){var r="",i,tr=tb.childNodes; for(i=0;i<tr.length;i++){ if(tr[i].tagName){if(tr[i].tagName.match(/thead|tfoot|tbody/i)){ r+=ftb(tr[i]); }else if(tr[i].tagName.match(/tr/i)){ r+=ftr(tr[i])+"\n"; } } } return r; } function fd(d){var i,tb=d.getElementsByTagName("table"); for(i=0;i<tb.length;i++){var nt=document.createElement("div"); nt.innerHTML='<textarea onclick="this.select();" readonly>'+ftb(tb[i])+'</textarea>';tb[i].parentNode.insertBefore(nt,tb[i]);} } function fw(w){ fd(w.document); if(w.length) for(var i=0;i<w.length;i++) try{fw(w[i])}catch(e){} } fd(window.document); return void(0); } )();
+javascript:(function(){function ftr(tr){var r="",i,td=tr.childNodes; for(i=0;i<td.length;i++) if(td[i].tagName && td[i].tagName.match(/th|td/i)) r+="\""+td[i].innerHTML.replace(/\s+/g," ").replace(/<br\s.*?>/ig,"\n").replace(/<.*?>/g,"").replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&quot;/ig,"\"").replace(/&amp;/ig,"&").replace(/\"/g,"\"\"")+"\"\t"; return r.substr(0,r.length-1); } function ftb(tb){var r="",i,tr=tb.childNodes; for(i=0;i<tr.length;i++){ if(tr[i].tagName){if(tr[i].tagName.match(/thead|tfoot|tbody/i)){ r+=ftb(tr[i]); }else if(tr[i].tagName.match(/tr/i)){ r+=ftr(tr[i])+"\n"; } } } return r; } function fd(d){var i,tb=d.getElementsByTagName("table"); for(i=0;i<tb.length;i++){var nt=document.createElement("div"); nt.innerHTML='<textarea onclick="this.select();" readonly>'+ftb(tb[i])+'</textarea>';tb[i].parentNode.insertBefore(nt,tb[i]);} } function fw(w){ try{fd(w.document)}catch(e){} if(w.length) for(var i=0;i<w.length;i++) fw(w[i])} fd(window.document); return void(0); } )();
 
 
 # ページに margin-top を付加する
