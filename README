@@ -9,7 +9,7 @@ Firefoxで普段使ってるブックマークレットです。ブラウザか�
 
 # タイトル,URL,選択部分をコピー用テキスト/リンクにする
 
-javascript:a='size="40" style="font-size:large;" onclick="this.select();"';d=document;s=getSelection()+'';if(s!="")s='"'+s+'" ';t=d.title;u=location.href;b=d.getElementsByTagName("body")[0];f=d.createElement("form");f.innerHTML='<input name="i1" '+a+'><br><input name="i2" '+a+'>';f.setAttribute("style","position:fixed;top:0px;left:0px;z-index:10000;");b.appendChild(f,b.firstChild);f.i1.value=s+t+' '+u;f.i2.value=s+'<a href="'+u+'">'+t+'</a>';void(0);
+javascript:a='size="40"%20style="font-size:large;"%20onclick="this.select();" readonly';d=document;s=getSelection()+'';if(s!="")s='"'+s+'"%20';t=d.title;u=location.href;b=d.getElementsByTagName("body")[0];f=d.createElement("form");f.innerHTML='<input%20name="i1"%20'+a+'><br><input%20name="i2"%20'+a+'>';f.setAttribute("style","position:fixed;top:0px;left:0px;z-index:10000;");b.appendChild(f,b.firstChild);f.i1.value=s+t+'%20'+u;f.i2.value=s+'<a%20href="'+u+'">'+t+'</a>';void(0);
 
 
 # 転職会議 - 画像をオリジナルサイズにする
@@ -85,7 +85,7 @@ javascript:(function(){var%20q=%22%22,f=document.forms;for(var%20i=0;i<f.length;
 
 # テーブルをタブ区切りテキストに変換する
 
-javascript:(%20function(){%20function%20ftr(tr){%20var%20r="",i,td=tr.childNodes;%20for(i=0;i<td.length;i++)%20if(td[i].tagName%20&&%20td[i].tagName.match(/th|td/i))%20r+="\""+td[i].innerHTML.replace(/\s+/g,"%20").replace(/<br\s.*?>/ig,"\n").replace(/<.*?>/g,"").replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&quot;/ig,"\"").replace(/&amp;/ig,"&").replace(/\"/g,"\"\"")+"\"\t";%20return%20r.substr(0,r.length-1);%20}%20function%20ftb(tb){%20var%20r="",i,tr=tb.childNodes;%20for(i=0;i<tr.length;i++){%20if(tr[i].tagName){%20if(tr[i].tagName.match(/thead|tfoot|tbody/i)){%20r+=ftb(tr[i]);%20}else%20if(tr[i].tagName.match(/tr/i)){%20r+=ftr(tr[i])+"\n";%20}%20}%20}%20return%20r;%20}%20function%20fd(d){%20var%20i,tb=d.getElementsByTagName("table");%20for(i=0;i<tb.length;i++){%20var%20nt=document.createElement("textarea");%20nt.innerHTML=ftb(tb[i]);%20tb[i].parentNode.insertBefore(nt,tb[i]);%20}%20}%20function%20fw(w){%20if(w.length)%20for(var%20i=0;i<w.length;i++)%20fw(w[i]);%20else%20fd(w.document)%20}%20fw(window);%20return%20void(0);%20}%20)();
+javascript:(function(){function ftr(tr){var r="",i,td=tr.childNodes; for(i=0;i<td.length;i++) if(td[i].tagName && td[i].tagName.match(/th|td/i)) r+="\""+td[i].innerHTML.replace(/\s+/g," ").replace(/<br\s.*?>/ig,"\n").replace(/<.*?>/g,"").replace(/&lt;/ig,"<").replace(/&gt;/ig,">").replace(/&quot;/ig,"\"").replace(/&amp;/ig,"&").replace(/\"/g,"\"\"")+"\"\t"; return r.substr(0,r.length-1); } function ftb(tb){var r="",i,tr=tb.childNodes; for(i=0;i<tr.length;i++){ if(tr[i].tagName){if(tr[i].tagName.match(/thead|tfoot|tbody/i)){ r+=ftb(tr[i]); }else if(tr[i].tagName.match(/tr/i)){ r+=ftr(tr[i])+"\n"; } } } return r; } function fd(d){var i,tb=d.getElementsByTagName("table"); for(i=0;i<tb.length;i++){var nt=document.createElement("div"); nt.innerHTML='<textarea onclick="this.select();" readonly>'+ftb(tb[i])+'</textarea>';tb[i].parentNode.insertBefore(nt,tb[i]);} } function fw(w){ fd(w.document); if(w.length) for(var i=0;i<w.length;i++) try{fw(w[i])}catch(e){} } fd(window.document); return void(0); } )();
 
 
 # ページに margin-top を付加する
