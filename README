@@ -7,6 +7,10 @@ Firefoxで普段使ってるブックマークレットです。ブラウザか�
 ブックマークレットの使い方: 対象のWebページに移動して、ブックマークメニューやブックマークバーから、登録したブックマークレットを選択します。
 
 
+# Twipple の画像直リンURLを、記事ページのものに変換
+javascript:l=location;l.href=l.href.replace(/twpl\.jp\/show\/orig/,"twipple.jp")
+
+
 # タイトル,URL,選択部分をコピー用テキスト/リンクにする
 
 javascript:a='size="40"%20style="font-size:large;"%20onclick="this.select();" readonly';d=document;s=getSelection()+'';if(s!="")s='"'+s+'"%20';t=d.title;u=location.href;b=d.getElementsByTagName("body")[0];f=d.createElement("form");f.innerHTML='<input%20name="i1"%20'+a+'><br><input%20name="i2"%20'+a+'>';f.setAttribute("style","position:fixed;top:0px;left:0px;z-index:10000;");b.appendChild(f,b.firstChild);f.i1.value=s+t+'%20'+u;f.i2.value=s+'<a%20href="'+u+'">'+t+'</a>';void(0);
