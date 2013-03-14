@@ -7,6 +7,10 @@ Firefoxで普段使ってるブックマークレットです。ブラウザか�
 ブックマークレットの使い方: 対象のWebページに移動して、ブックマークメニューやブックマークバーから、登録したブックマークレットを選択します。
 
 
+# Soundcloud のダウンロードボタンを全部押す(5秒毎に順番に押します)
+javascript:jQuery("button.sc-button-download").each(function(i,e){setTimeout(function(){$(e).css({borderColor:"red"}).click()},i*5000)});
+
+
 # Twipple の画像直リンURLを、記事ページのものに変換
 javascript:l=location;l.href=l.href.replace(/twpl\.jp\/show\/orig/,"twipple.jp")
 
