@@ -7,6 +7,11 @@ Firefoxで普段使ってるブックマークレットです。ブラウザか�
 ブックマークレットの使い方: 対象のWebページに移動して、ブックマークメニューやブックマークバーから、登録したブックマークレットを選択します。
 
 
+# jQueryを読み込む(コンソール等でjQueryを使いたい時に)
+# バージョンとURLを確認: https://developers.google.com/speed/libraries/devguide?hl=ja#jquery
+javascript:document.body.appendChild(document.createElement("script")).setAttribute("src","http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js")
+
+
 # Soundcloud のダウンロードボタンを全部押す(5秒毎に順番に押します)
 javascript:jQuery("button.sc-button-download").each(function(i,e){setTimeout(function(){$(e).css({borderColor:"red"}).click()},i*5000)});
 
